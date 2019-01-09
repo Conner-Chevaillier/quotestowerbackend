@@ -14,11 +14,10 @@ app.use(bodyParser.json())
 // })
 
 //ROUTE BELOW FOR FETCHING SINGLE QUOTE
-app.get('/quotes/:user', function (req, res) {
+app.get('/faves/:user', function (req, res) {
     queries.getById(req.params.id).then(response => res.send(response))
 
 })
-
 
 //POST ROUTE
 app.get('/quotes', (req, res) => {
