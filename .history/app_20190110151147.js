@@ -10,10 +10,6 @@ const knex = require('./database-connection')
 app.use(cors())
 app.use(bodyParser.json())
 
-
-app.use('/users', require('./routes/users'))
-app.use('/quotes', require('./routes/quotes'))
-
 app.get('/quotes/:email', getOne)
 function getOne(req, res, next) {
     knex('email')
@@ -21,7 +17,7 @@ function getOne(req, res, next) {
         .where({ email: req.params.email })
         .then((quotes) => {
             if (!quotes) return res.status(404).send({ message: 'Item not found.' })
-            res.status(200).send({ data: quotes })
+            res.status(200).send({ data: item })
         })
         .catch(next)
 }
@@ -71,7 +67,7 @@ app.delete('/quotes/:id', (req, res) => {
 //ERROR ROUTE
 
 app.get('*', function (req, res) {
-    res.status(404).send('Page Not Found: 404')
+    res.send('Page Not Found: 404')
 })
 
 //HOSTING

@@ -1,0 +1,3 @@
+- [] as a user you can commit/add a quote.
+- [] a delete a quote as a user 
+- [] as a user I can look up quotes  that match my email. 

@@ -5,27 +5,14 @@ const port = process.env.PORT || 3001
 var cors = require('cors')
 const queries = require('./queries')
 const fetch = require('./fetch')
-const knex = require('./database-connection')
 
 app.use(cors())
 app.use(bodyParser.json())
 
-
-app.use('/users', require('./routes/users'))
-app.use('/quotes', require('./routes/quotes'))
-
-app.get('/quotes/:email', getOne)
-function getOne(req, res, next) {
-    knex('email')
-        .select('*')
-        .where({ email: req.params.email })
-        .then((quotes) => {
-            if (!quotes) return res.status(404).send({ message: 'Item not found.' })
-            res.status(200).send({ data: quotes })
-        })
-        .catch(next)
-}
-
+// //INDEX ROUTE
+// app.get('/', function (req, res) {
+//     queries.getAll().then(response => res.send(response))
+// })
 
 // ROUTE BELOW FOR FETCHING SINGLE QUOTE
 app.get('/quotes/:email', function (req, res) {
@@ -34,10 +21,16 @@ app.get('/quotes/:email', function (req, res) {
         // res.send(response[0])
         console.log(response)
         res.send({ quote: response[0].quote, author: response[0].author })
-    })
+     })
 })
-// 
 
+//POST ROUTE
+// app.post('/quotes', function (req, res) {
+//     queries.joinGetQuotebyEmail(req.body.email).then(response => {
+//         res.send(response[0])
+
+//     })
+// })
 app.get('/', (req, res) => {
     res.send({ success: "success" })
 
@@ -71,7 +64,7 @@ app.delete('/quotes/:id', (req, res) => {
 //ERROR ROUTE
 
 app.get('*', function (req, res) {
-    res.status(404).send('Page Not Found: 404')
+    res.send('Page Not Found: 404')
 })
 
 //HOSTING
