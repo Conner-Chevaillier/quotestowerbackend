@@ -16,6 +16,11 @@ exports.seed = function (knex, Promise) {
           email: 'Updater@gmail.com',
 
         },
+        {
+          email: 'dater@gmail.com',
+
+        },
+
 
       ])
     })

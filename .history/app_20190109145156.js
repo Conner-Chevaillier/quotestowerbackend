@@ -20,7 +20,7 @@ app.get('/quotes/:email', function (req, res) {
     queries.joinGetQuotebyEmail(req.params.email).then(response => {
         // res.send(response[0])
         console.log(response)
-        res.send({ quote: response[0].quote, author: response[0].author })
+        res.send({ quote: response[0].quote.body, author: response[0].quote.author })
 
     })
 })

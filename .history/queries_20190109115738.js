@@ -9,14 +9,12 @@ module.exports = {
          .then(quotes => quotes)
    },
    joinGetQuotebyEmail(email) {
-      console.log('email', email)
       return db('users').innerJoin('quotes', 'quotes.id', 'users.id')
          .select(
             'users.email',
             'quotes.quote',
             'quotes.author',
          )
-         .where('users.email', email)
-         .returning('*');
+         .where('users.email')
    }
 }

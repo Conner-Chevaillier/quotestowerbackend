@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 
 // ROUTE BELOW FOR FETCHING SINGLE QUOTE
 app.get('/quotes/:email', function (req, res) {
-    console.log('route hit')
     queries.joinGetQuotebyEmail(req.params.email).then(response => {
         // res.send(response[0])
         console.log(response)

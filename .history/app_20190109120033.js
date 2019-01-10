@@ -3,36 +3,29 @@ const app = express()
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 3001
 var cors = require('cors')
-const queries = require('./queries')
 const fetch = require('./fetch')
 
 app.use(cors())
 app.use(bodyParser.json())
 
-// //INDEX ROUTE
-// app.get('/', function (req, res) {
-//     queries.getAll().then(response => res.send(response))
-// })
-
-// ROUTE BELOW FOR FETCHING SINGLE QUOTE
-app.get('/quotes/:email', function (req, res) {
-    console.log('route hit')
-    queries.joinGetQuotebyEmail(req.params.email).then(response => {
-        // res.send(response[0])
-        console.log(response)
-        res.send({ quote: response[0].quote, author: response[0].author })
-
-    })
+//INDEX ROUTE
+app.get('/', function (req, res) {
+    queries.getAll().then(response => res.send(response))
 })
 
+// ROUTE BELOW FOR FETCHING SINGLE QUOTE
+app.get('/quotes/:user', function (req, res) {
+    queries.getById(req.params.id).then(response => res.send(response))
+
+})
 //POST ROUTE
-// app.post('/quotes', function (req, res) {
-//     queries.joinGetQuotebyEmail(req.body.email).then(response => {
-//         res.send(response[0])
-
-//     })
-// })
-
+app.post('/quotes', function (req, res) {
+    console.log(req.body)
+    queries.joinGetQuotebyEmail(req.body.email).then(response => {
+        res.send(response))
+    console.log("thank you")
+})
+})
 
 app.get('/', (req, res) => {
     res.send({ success: "success" })
@@ -56,7 +49,6 @@ app.put('/quotes', (req, res) => {
 //DELETE BY ID ROUTE
 app.delete('/quotes/:id', (req, res) => {
     queries.deleteQuote(req.params.id).then(res.sendStatus(204))
-
 })
 
 //DELETE ALL ROUTE

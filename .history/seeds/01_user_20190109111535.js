@@ -5,15 +5,15 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       return knex("users").insert([
         {
-          email: 'downmanboy@gmail.com',
+          Email: 'downmanboy@gmail.com',
 
         },
         {
-          email: 'manboy@gmail.com',
+          Email: 'manboy@gmail.com',
 
         },
         {
-          email: 'Updater@gmail.com',
+          Email: 'Updater@gmail.com',
 
         },
 
