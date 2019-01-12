@@ -11,21 +11,21 @@ app.use(cors())
 app.use(bodyParser.json())
 
 
-// app.use('/users', require('./routes/users'))
-// app.use('/quotes', require('./routes/quotes'))
+app.use('/users', require('./routes/users'))
+app.use('/quotes', require('./routes/quotes'))
 
 
-app.post('/quotes/:email', getOne)
-function getOne(req, res, next) {
-    knex('email')
-        .select('*')
-        .where({ email: req.params.email })
-        .then((quotes) => {
-            if (!quotes) return res.status(404).send({ message: 'Item not found.' })
-            res.status(200).send({ data: quotes })
-        })
-        .catch(next)
-}
+// app.post('/quotes/:email', getOne)
+// function getOne(req, res, next) {
+//     knex('email')
+//         .select('*')
+//         .where({ email: req.params.email })
+//         .then((quotes) => {
+//             if (!quotes) return res.status(404).send({ message: 'Item not found.' })
+//             res.status(200).send({ data: quotes })
+//         })
+//         .catch(next)
+// }
 
 // app.get('/quotes/:email', getOne)
 // function getOne(req, res, next) {

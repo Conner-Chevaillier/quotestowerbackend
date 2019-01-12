@@ -18,16 +18,16 @@ module.exports = {
          )
          .where('users.email', email)
          .returning('*');
-   },
-   // joinGetSavedQuotebyEmail(email) {
-   //    console.log('email', email)
-   //    return db('users').innerJoin('quotes', 'quotes.id', 'users.id')
-   //       .select(
-   //          'users.email',
-   //          'quotes.quote',
-   //          'quotes.author',
-   //       )
-   //       .where('users.email', email)
-   //       .returning('*');
-   // }
+   }
+   joinGetSavedQuotebyEmail(email) {
+      console.log('email', email)
+      return db('users').innerJoin('quotes', 'quotes.id', 'users.id')
+         .select(
+            'users.email',
+            'quotes.quote',
+            'quotes.author',
+         )
+         .where('users.email', email)
+         .returning('*');
+   }
 }

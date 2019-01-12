@@ -11,8 +11,8 @@ app.use(cors())
 app.use(bodyParser.json())
 
 
-// app.use('/users', require('./routes/users'))
-// app.use('/quotes', require('./routes/quotes'))
+app.use('/users', require('./routes/users'))
+app.use('/quotes', require('./routes/quotes'))
 
 
 app.post('/quotes/:email', getOne)
